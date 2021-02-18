@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <HelloWorld :title="validate"/>
+    <HelloWorld :title="slot">
+      <p class="inner">***this is default text***</p>
+    </HelloWorld>
   </div>
 </template>
 
