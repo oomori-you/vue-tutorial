@@ -3,12 +3,7 @@
     <h1>{{ title }}</h1>
     <pre v-on:click="clear">{{ message }}</pre>
     <hr>
-    <div id="out" class="out" v-on:click="a_event">A
-      <div id="mid" class="mid" v-on:click="b_event">B
-        <div id="in" class="in" v-on:click="c_event">C
-        </div>
-      </div>
-    </div>
+    <div><input type="text" v-on:keydown="type"></div>
   </div>
 </template>
 
@@ -24,14 +19,12 @@ export default  {
     };
   },
   methods: {
-    a_event: function(event) {
-      this.message += "A-Event [" + event.target.id + ' -> ' + event.currentTarget.id + "]\n";
-    },
-    b_event: function(event) {
-      this.message += "B-Event [" + event.target.id + ' -> ' + event.currentTarget.id + "]\n";
-    },
-    c_event: function(event) {
-      this.message += "C-Event [" + event.target.id + ' -> ' + event.currentTarget.id + "]\n";
+    type: function (event) {
+      this.message += event.key + ' ';
+      if (event.key === 'Escape') {
+        this.message = '';
+      }
+      event.target.value = '';
     },
     clear: function() {
       this.message = ''
