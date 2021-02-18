@@ -3,7 +3,13 @@
     <h1>{{ title }}</h1>
     <p>{{ message }}</p>
     <hr>
-    <div><slot /></div>
+    <ul>
+      <li><slot name="a" /></li>
+      <li><slot name="b" /></li>
+      <li><slot name="c" /></li>
+    </ul>
+    <hr>
+    <slot />
   </div>
 </template>
 
@@ -37,7 +43,7 @@ h1 {
   margin: 0px;
 }
 p {
-  margin: 0px;
+  margin: 2px;
   color: #666;
   font-size: 16px;
 }
@@ -73,6 +79,12 @@ div.in {
 .inner {
   color: red;
   font-size: 14pt;
+}
+.etc {
+  color: green;
+  background-color: #eee;
+  font-size: 12pt;
+  padding: 5px
 }
 
 </style>
