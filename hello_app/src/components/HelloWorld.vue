@@ -1,25 +1,12 @@
-<template>
-  <div class="hello">
-    <h1>{{ title }}</h1>
-    <p>{{ message }}</p>
-    <hr>
-    <ol>
-      <slot />
-    </ol>
-  </div>
-</template>
-
 <script>
 export default  {
   name: 'HelloWorld',
-  props: {
-    title: String,
-  },
-  data: function() {
-    return {
-      message: 'This is message.',
-    };
-  },
+  render: function(h) {
+    return h('div', {},[
+        h('h1', 'Render'),
+        h('p', 'this is render sample.'),
+    ]);
+  }
 }
 </script>
 
