@@ -1,16 +1,14 @@
 <template>
   <div class="hello">
     <h1>{{ title }}</h1>
-    <p>{{ message }}</p>
+    <pre v-on:click="clear">{{ message }}</pre>
     <hr>
-    <div>Value: <input type="number" v-model="val"></div>
-    <div style="height:10px;"></div>
-    <table>
-      <tr><th>add:</th><td>{{ add }}</td></tr>
-      <tr><th>sub:</th><td>{{ sub }}</td></tr>
-      <tr><th>multiple:</th><td>{{ mult }}</td></tr>
-      <tr><th>divide:</th><td>{{ div }}</td></tr>
-    </table>
+    <div id="out" class="out" v-on:click="a_event">A
+      <div id="mid" class="mid" v-on:click="b_event">B
+        <div id="in" class="in" v-on:click="c_event">C
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -22,27 +20,23 @@ export default  {
   },
   data: function() {
     return {
-      message: '値の監視',
-      val: 0,
-      add: 0,
-      sub: 0,
-      mult: 0,
-      div: 0,
+      message: '',
     };
   },
-  watch: {
-    val: function(value) {
-      this.val = value;
-      let val = parseInt(value);
-      this.add = Math.floor(val + 2);
-      this.sub = Math.floor(val - 2);
-      this.mult = Math.floor(val * 2);
-      this.div = Math.floor(val / 2);
+  methods: {
+    a_event: function(event) {
+      this.message += "A-Event [" + event.target.id + ' -> ' + event.currentTarget.id + "]\n";
+    },
+    b_event: function(event) {
+      this.message += "B-Event [" + event.target.id + ' -> ' + event.currentTarget.id + "]\n";
+    },
+    c_event: function(event) {
+      this.message += "C-Event [" + event.target.id + ' -> ' + event.currentTarget.id + "]\n";
+    },
+    clear: function() {
+      this.message = ''
     }
-  },
-  created: function() {
-    this.val = 5;
-  },
+  }
 }
 </script>
 
@@ -66,4 +60,27 @@ p {
   color: #666;
   font-size: 16px;
 }
+pre {
+  font-size: 14px;
+  line-height: 1.25;
+}
+div.out {
+  padding: 5px 0px;
+  background-color: #eee;
+  width: 300px;
+  height: 200px;
+}
+div.mid {
+  padding: 5px 0px;
+  background-color: #ddd;
+  width: 200px;
+  height: 175px;
+}
+div.in {
+  padding: 5px 0px;
+  background-color: #ccc;
+  width: 100px;
+  height: 150px;
+}
+
 </style>
