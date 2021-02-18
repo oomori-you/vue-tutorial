@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <HelloWorld :title="slot">
-      <li v-for="obj in slotobjs" :key="obj.name">
-        {{ obj.name }} ({{ obj.mail }})
-      </li>
+    <HelloWorld>
     </HelloWorld>
   </div>
 </template>

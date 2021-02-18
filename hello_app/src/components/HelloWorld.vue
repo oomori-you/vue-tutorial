@@ -2,10 +2,13 @@
 export default  {
   name: 'HelloWorld',
   render: function(h) {
-    return h('div', {},[
-        h('h1', 'Render'),
-        h('p', 'this is render sample.'),
-    ]);
+    h.length;
+    return (
+        <div>
+          <h1>JSX</h1>
+          <p>This is JSX message!</p>
+        </div>
+    );
   }
 }
 </script>
