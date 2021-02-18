@@ -1,12 +1,18 @@
 <script>
 export default  {
   name: 'HelloWorld',
+  data: function() {
+    return {
+      title: 'JSX',
+      message: 'これは、dataに用意したメッセージです。'
+    }
+  },
   render: function(h) {
     h.length;
     return (
         <div>
-          <h1>JSX</h1>
-          <p>This is JSX message!</p>
+          <h1>{this.title}</h1>
+          <p>{this.message}</p>
         </div>
     );
   }
