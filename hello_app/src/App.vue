@@ -1,12 +1,9 @@
 <template>
   <div id="app">
     <HelloWorld :title="slot">
-      <p class="etc">Begin!</p>
-      <p slot="a" class="inner">***First message***</p>
-      <p class="etc">Middle...</p>
-      <p slot="b" class="inner">***Second message***</p>
-      <p class="etc">End.</p>
-      <p slot="c" class="inner">***Third message***</p>
+      <li v-for="obj in slotobjs" :key="obj.name">
+        {{ obj.name }} ({{ obj.mail }})
+      </li>
     </HelloWorld>
   </div>
 </template>
@@ -21,8 +18,11 @@ export default {
   },
   data: function() {
     return {
-      message: 'validate',
-      num: 80
+      slotobjs: [
+        {name: 'Taro', mail: 'taro@'},
+        {name: 'Hanako', mail: 'hanako@'},
+        {name: 'Sachiko', mail: 'sachiko@'},
+      ]
     };
   },
 }
