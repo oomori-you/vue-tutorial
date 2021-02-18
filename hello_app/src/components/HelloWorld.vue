@@ -1,15 +1,15 @@
 <template>
   <div class="hello">
     <h1>{{ title }}</h1>
-    <pre v-on:click="clear">{{ message }}</pre>
+    <pre>{{ message }}</pre>
     <hr>
-    <div>
-      <input type="text"
-             v-on:keypress="type"
-             v-on:keydown.delete="clear"
-             v-on:keydown.space="space"
-             v-on:keydown.enter="enter"
-      >
+    <div class="area"
+         v-on:click.exact="exact"
+         v-on:click.shift="shift"
+         v-on:click.ctrl="ctrl"
+         v-on:click.alt="alt"
+    >
+      click here!
     </div>
   </div>
 </template>
@@ -26,25 +26,19 @@ export default  {
     };
   },
   methods: {
-    type: function (event) {
-      if (event.key === 'Enter') {
-        return;
-      }
-      this.message += event.key + ' ';
-      event.target.value = '';
+    exact: function() {
+      this.message += '** no any key**';
     },
-    clear: function() {
-      this.message = ''
+    shift: function() {
+      this.message += '[shift]';
     },
-    space: function() {
-      this.message += '_ ';
+    ctrl: function() {
+      this.message += '[ctrl]';
     },
-    enter: function (event) {
-      let res = this.message.split(' ').join('')
-      this.message = res.split('_').join(' ');
-      event.target.value = '';
-    }
-  }
+    alt: function() {
+      this.message += '[alt]'
+    },
+  },
 }
 </script>
 
@@ -89,6 +83,13 @@ div.in {
   background-color: #ccc;
   width: 100px;
   height: 150px;
+}
+.area {
+  width: 300px;
+  height: 100px;
+  background-color: #ddd;
+  padding: 10px;
+  font-size: 20px;
 }
 
 </style>
