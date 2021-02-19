@@ -1,3 +1,4 @@
+<script src="../../../store/index.js"></script>
 <template>
   <div class="container">
     <h1>{{ title }}</h1>

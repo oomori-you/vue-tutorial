@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>{{ title }}</h1>
-    <p>{{ message }}</p>
+    <p>{{ $store.state.message }}</p>
     <hr>
     <router-link to="/other">Go to Other</router-link>
   </div>
