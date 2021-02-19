@@ -1,73 +1,52 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        nuxt_app
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    <h1>{{ title }}</h1>
+    <p>{{ message }}</p>
+    <hr>
+    <pre>{{ now }}</pre>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data: function() {
+    return {
+      title: 'Hello',
+      message: 'this is message.',
+      now: 'wait ...'
+    }
+  },
+  created: function() {
+    setInterval(() => {
+      let d = new Date();
+      this.now = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+    })
+  }
+}
 </script>
 
 <style>
 .container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  padding: 5px 10px
 }
 
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+h1 {
+  font-size: 60px;
+  color: #345980
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+p {
+  padding-top: 5px;
+  font-size: 20px
 }
 
-.links {
-  padding-top: 15px;
+pre {
+  padding: 10px;
+  font-size: 18pt;
+  background-color: #efefef;
+}
+
+hr {
+  margin: 10px 0px;
 }
 </style>
