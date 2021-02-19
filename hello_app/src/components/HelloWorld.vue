@@ -41,6 +41,43 @@ export default  {
   padding: 10px;
   font-size: 20pt;
 }
+
+.transit-leave-active {
+  animation: anim 5.0s;
+}
+.transit-enter-active {
+  animation: anim 2.5s reverse;
+}
+
+@keyframes anim {
+  0% {
+    transform: translateX(0px) translateY(0px) rotateZ(0deg);
+    opacity: 1.0;
+    background-color: #ddf;
+  }
+  25% {
+    transform: translateX(250px) translateY(0px) rotateZ(0deg);
+    opacity: 1.0;
+    background-color: #fdd;
+  }
+  50% {
+    transform: translateX(0px) translateY(-100px) rotateZ(540deg);
+    opacity: 1.0;
+    background-color: #dfd;
+  }
+  75% {
+    transform: translateX(250px) translateY(-100px) rotateZ(540deg);
+    opacity: 1.0;
+    background-color: #fdf;
+  }
+  100% {
+    transform: translateX(0px) translateY(-200px) rotateZ(1080);
+    opacity: 0;
+    background-color: #ffd;
+  }
+}
+
+
 .transit-enter-active {
   transition: 1.0s;
 }
