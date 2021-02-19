@@ -6,7 +6,11 @@
     <button v-on:click="doAction">
       {{ btn }}
     </button>
-    <transition name="transit">
+    <transition name="transit"
+                v-on:before-enter="startAction"
+                v-on:before-leave="startAction"
+                v-on:after-enter="endAction"
+                v-on:after-leave="endAction">
       <p v-if="flg" class="trans">Transition:</p>
     </transition>
   </div>
@@ -28,8 +32,24 @@ export default  {
   methods: {
     doAction: function() {
       this.flg = !this.flg
+    },
+    startAction: function() {
+      if (this.flg) {
+        this.message = '現れます......';
+      } else {
+        this.message = '消えます......';
+      }
+    },
+    endAction: function() {
+      if (this.flg) {
+        this.btn = 'Hide';
+        this.message = '現れました'
+      } else {
+        this.btn = 'Show';
+        this.message = '消えました'
+      }
     }
-  }
+  },
 }
 </script>
 
