@@ -4,13 +4,11 @@
     <p>{{ message }}</p>
     <hr />
     <button v-on:click="doAction">
-      {{ btn }}
+      Show/Hide
     </button>
-    <transition name="transit"
-                v-on:before-enter="startAction"
-                v-on:before-leave="startAction"
-                v-on:after-enter="endAction"
-                v-on:after-leave="endAction">
+    <br><br>
+
+    <transition name="transit">
       <p v-if="flg" class="trans">Transition:</p>
     </transition>
   </div>
@@ -25,57 +23,42 @@ export default  {
   data: function() {
     return {
       message: 'Transition Sample!',
-      flg: true,
-      btn: 'Show/Hide'
+      flg: true
     };
   },
   methods: {
     doAction: function() {
       this.flg = !this.flg
     },
-    startAction: function() {
-      if (this.flg) {
-        this.message = '現れます......';
-      } else {
-        this.message = '消えます......';
-      }
-    },
-    endAction: function() {
-      if (this.flg) {
-        this.btn = 'Hide';
-        this.message = '現れました'
-      } else {
-        this.btn = 'Show';
-        this.message = '消えました'
-      }
-    }
   },
 }
 </script>
 
 <style>
 .trans {
+  width: 150px;
   background-color: #ddf;
   padding: 10px;
   font-size: 20pt;
 }
 .transit-enter-active {
-  transition: opacity 0.5s
+  transition: 1.0s;
 }
 .transit-leave-active {
-  transition: opacity 5.0s;
+  transition: 1.0s;
 }
-.transit-enter {
-  opacity: 0;
+
+.transit-enter, .transit-leave-to {
+  transform: rotateZ(360deg);
+  opacity: 0.1;
 }
+
+
 .transit-enter-to {
   opacity: 1.0;
 }
 .transit-leave {
   opacity: 1.0;
-}
-.transit-leave-to {
-  opacity: 0;
 }
 
 div {
