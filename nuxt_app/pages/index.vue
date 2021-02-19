@@ -4,6 +4,12 @@
     <p>{{ $store.state.message }}</p>
     <hr>
     <router-link to="/other">Go to Other</router-link>
+    <div class="link"
+         v-on:click="doAction">
+      <a>
+        clicked: {{ $store.state.counter }}
+      </a>
+    </div>
   </div>
 </template>
 
@@ -13,14 +19,12 @@ export default {
     return {
       title: 'Hello',
       message: 'this is message.',
-      now: 'wait ...'
     }
   },
-  created: function() {
-    setInterval(() => {
-      let d = new Date();
-      this.now = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
-    })
+  methods: {
+    doAction: function() {
+      this.$store.state.counter++;
+    }
   }
 }
 </script>
@@ -48,5 +52,14 @@ pre {
 
 hr {
   margin: 10px 0px;
+}
+
+a {
+  font-size: 16pt;
+}
+
+.link {
+  background-color: #def;
+  padding: 10px;
 }
 </style>
