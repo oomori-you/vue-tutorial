@@ -5,8 +5,8 @@
     <hr>
     <router-link to="/other">Go to Other</router-link>
     <div class="link"
-         @click.exact="$store.commit('count', 1)"
-         @click.shift="$store.commit('count', 2)"
+         @click.exact="$store.commit({type: 'count', message: 'add 1', add: 1})"
+         @click.shift="$store.commit({type: 'count', message: 'add 2', add: 2})"
          @click.meta="$store.commit('reset')">
       <a>
         clicked: {{ $store.state.counter }}
