@@ -11,7 +11,7 @@
       <tr>
         <th>Memo</th>
         <td>
-          <textarea name="content" class="content" cols="50", rows="5" v-model="content"></textarea>
+          <textarea name="content" class="content" cols="50" rows="5" v-model="content"></textarea>
         </td>
       </tr>
       <tr>
@@ -40,7 +40,6 @@
   </div>
 </template>
 
-
 <script>
 export default {
   data: function() {
@@ -61,7 +60,7 @@ export default {
         let arr = [];
         let data = this.$store.state.memo.memo;
         data.forEach(element => {
-          if (element.title.toLowerCase().indexof(this.title.toLowerCase()) >= 0) {
+          if (element.title.toLowerCase().indexOf(this.title.toLowerCase()) >= 0) {
             arr.push(element)
           }
         });
