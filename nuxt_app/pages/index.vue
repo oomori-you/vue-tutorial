@@ -5,7 +5,7 @@
     <hr>
     <router-link to="/other">Go to Other</router-link>
     <div class="link"
-         @click="$store.dispatch('doit')"
+         @click="$store.commit('doit')"
          @click.meta="$store.commit('reset')">
       <a>
         clicked: {{ $store.state.counter }}
