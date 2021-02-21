@@ -47,6 +47,9 @@ export default {
       axios.get(url + this.msg).then((res) => {
         this.message = 'get ID=' + this.msg;
         this.json_data = res.data;
+      }).catch((event) => {
+        this.message = 'ERROR:';
+        this.json_data = {};
       });
     },
   },
