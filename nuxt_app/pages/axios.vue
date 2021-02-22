@@ -2,76 +2,38 @@
   <div class="container">
     <h1>{{ title }}</h1>
     <p>{{ message }}</p>
-    <table>
-      <tr>
-        <th>Email</th>
-        <td><input v-model="email"></td>
-      </tr>
-      <tr>
-        <th>Name</th>
-        <td><input v-model="username"></td>
-      </tr>
-      <tr>
-        <th>Age</th>
-        <td><input type="number" v-model="age"></td>
-      </tr>
-      <tr>
-        <th>Tel</th>
-        <td><input v-model="tel"></td>
-      </tr>
-      <tr><th></th><td>
-        <button @click="addData">Click</button>
-      </td></tr>
-    </table>
-    <ul v-for="(data, key) in json_data">
-      <li><strong>{{key}}</strong><br>{{data}}</li>
-    </ul>
   </div>
 </template>
 
 <script>
-const axios = require('axios')
-
-let url = 'https://valsamina-vue-default-rtdb.firebaseio.com/person';
+import firebase from "firebase"
 
 export default {
   data: function() {
     return {
-      title: 'Axios',
-      message: 'axios sample.',
-      email: '',
-      username: '',
-      tel: '',
-      age: 0,
-      json_data: {}
+      title: 'Auth',
+      message: 'this is message.',
     };
   },
-  methods: {
-    addData: function() {
-      let add_url = url + '/' + this.email + '.json';
-      let data = {
-        'name': this.username,
-        'age': this.age,
-        'tel': this.tel
-      };
-      axios.put(add_url, data).then((re) => {
-        this.email = '';
-        this.username = '';
-        this.age = 0;
-        this.tel = '';
-        this.getData();
-      });
-    },
-    getData: function() {
-      axios.get(url + '.json').then((res) => {
-        this.message = 'get all data.'
-        this.json_data = res.data;
-      }).catch((errpr) => {
-        this.message = 'ERROR!';
-        this.json_data = {};
-      })
-    }
-  }
+  created: function() {
+    const config = {
+      apiKey: "AIzaSyA-0SFQdIMMXBfYNoqoTZRUVy9eJfMZoVM",
+      authDomain: "valsamina-vue.firebaseapp.com",
+      databaseURL: "https://valsamina-vue-default-rtdb.firebaseio.com",
+      projectId: "valsamina-vue",
+      storageBucket: "valsamina-vue.appspot.com",
+      messagingSenderId: "543016180935",
+      appId: "1:543016180935:web:f043f060a433a9e969f2e2",
+      measurementId: "G-R716BPWPP8"
+    };
+    firebase.initializeApp(config);
+
+    let provider = new firebase.auth.GoogleAuthProvider();
+    var self = this;
+    firebase.auth().signInWithPopup(provider).then(function (result) {
+      self.message = result.user.displayName + ', ' + result.user.email;
+    });
+  },
 }
 </script>
 
