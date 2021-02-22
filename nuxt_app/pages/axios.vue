@@ -5,8 +5,8 @@
     <input v-model="find">
     <button @click="getData">Click</button>
     <hr>
-    <ul>
-      <li> {{ json_data }}</li>
+    <ul v-for="(item, key) in json_data" :key="key">
+      <li> {{key}} : {{ item }}</li>
     </ul>
   </div>
 </template>
@@ -14,7 +14,7 @@
 <script>
 const axios = require('axios')
 
-let url = 'https://valsamina-vue-default-rtdb.firebaseio.com/person/';
+let url = 'https://valsamina-vue-default-rtdb.firebaseio.com/person.json?orderBy=%22$key%22&equalTo=%22';
 
 export default {
   data: function() {
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     getData: function() {
-      let id_url = url + this.find + '.json';
+      let id_url = url + this.find + '%22';
       axios.get(id_url).then((res) => {
         this.message = 'get ID=' + this.find;
         this.json_data = res.data;
